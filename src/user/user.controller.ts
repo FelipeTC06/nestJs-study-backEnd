@@ -1,4 +1,6 @@
-import { Controller, Get } from '@nestjs/common';
+import { CreateUserDto } from './dtos/createUser.dto';
+import { Body, Controller, Get, Post } from '@nestjs/common';
+import { brotliDecompressSync } from 'zlib';
 
 @Controller('user')
 export class UserController {
@@ -6,4 +8,13 @@ export class UserController {
     async getAllUsers() {
         return JSON.stringify({ test: 'abc' });
     }
+
+    @Post()
+    async createUser(@Body() createUser: CreateUserDto) {
+        return {
+            ...createUser,
+            password: undefined,
+        };
+    }
+
 }
