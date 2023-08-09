@@ -15,6 +15,7 @@ export class UserController {
         return (await this.userService.getAllUser()).map((UserEntity) => new ReturnUserDto(UserEntity));
     }
 
+
     @Post()
     async createUser(@Body() createUser: CreateUserDto): Promise<UserEntity> {
         return this.userService.createUser(createUser);
